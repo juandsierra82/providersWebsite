@@ -1,38 +1,8 @@
-var 	mongoose 	= require('mongoose'),
-			Schema		=	mongoose.Schema;
+var userController = require('./userController.js');
 
-var UserSchema = new mongoose.Schema({
-	
-	username: {
-		type: String,
-		required: true,
-		unique: false
-	},
+module.exports = function (app){
 
-	password: {
-		type: String,
-		required: true,
-		unique: false
-	},
+	app.post('/signup', userController.addUser);
+	app.get('/signin', userController.findUser);
 
-	email: {
-		type: String,
-		required: true,
-		unique: true
-	},
-
-	address: {
-		type: String,
-		required: false,
-    unique: false
-	},
-
-	shared: {
-		type: Boolean,
-		required: true
-	}
-
-
-});
-
-module.exports = mongoose.model('Users', UserSchema);
+}

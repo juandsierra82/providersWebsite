@@ -13,7 +13,7 @@ var app = express();
 
 	//client side pages served up
 
-	// app.use('/',express.static(__dirname + '../../client/www'));
+	app.use('/',express.static(__dirname + '../../client/www'));
 
 	//routers
 
@@ -26,7 +26,7 @@ var app = express();
 
 	//db routes set up commented out
 
-	// require('./db/userModel/userRoutes.js')(userRouter);
+	require('./db/userModel/userRoutes.js')(userRouter);
 
 
 

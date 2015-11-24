@@ -1,14 +1,16 @@
-angular.module('starter', ['starter.controllers', 'starter.services'])
+(function() {
 
-	.config(function ($routeProvider, $httpProvider){
-	   $routeProvider
-	
+	angular.module('gloria', ['gloria.controllers', 'ngRoute', 'ui.router'])
 
-		.when('/login', {
-      templateUrl: 'www/views/login.html',
+	.config(function ($routeProvider, $httpProvider, $stateProvider, $urlRouterProvider){
+		$urlRouterProvider.otherwise('/');
+
+		$stateProvider
+		.state('login', {
+      templateUrl: 'views/login.html',
+      url: '/login',
       controller: 'AuthController'
-  	})
-
-  	.otherwise('/login')
+    })
 
 	});
+})()

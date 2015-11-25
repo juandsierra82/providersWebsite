@@ -1,9 +1,10 @@
 <div>
 	<form name="providerInfo">
-		<input name="dayCare" placeholder="Day Care Name" required/>
+		<input name="dayCare" ng-model="user.daycare"placeholder="Nombre del Day Care" required/>
 		<br>
-		<input name="address" placeholder="Direccion" required/>
-		<input name="email" type="email" placeholder="correo electronico" required/>
+		<input name="address" ng-model="user.address" placeholder="Direccion" required/>
+		<br>
+		<input name="email" ng-model="user.email" type="email" placeholder="correo electronico" required/>
 		<button ng-disabled="createForm.$invalid">Submit</button>
 	</form>
 </div>

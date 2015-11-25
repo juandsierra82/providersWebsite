@@ -1,6 +1,6 @@
 angular.module('gloria.controllers', ['gloria.services'])
 
-.controller('AuthController', function ($scope, $route, $location, Auth) {
+.controller('AuthController', function ($scope, $route, $location, Auth, $window) {
 //user object	
 	console.log('in AuthController')
 	$scope.user = {};
@@ -17,9 +17,15 @@ angular.module('gloria.controllers', ['gloria.services'])
 	$scope.signup = function (){
 		$scope.user.shared = true;
 		Auth.signup($scope.user)
-			.then(function (){
-				console.log('signup successful')
-				$location.path('/create')
+			.then(function (data){
+				$window.localStorage.setItem('com.spkr', data.token);
+        $window.localStorage.setItem('userid', data.userid);
+				$location.path('/create');
+			})
+			.catch(function (error){
+				console.log('this is the error', error)
+				$scope.user.error = ""+error.data;
+				throw error;
 			})
 	}
 })

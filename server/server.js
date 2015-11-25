@@ -4,8 +4,23 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var db = require('./db/db.js');
 var app = express();
+var cookieSession = require('cookie-session');
+var cookieParser = require('cookie-parser');
 
 	app.use(morgan('dev'));
+
+	app.use(cookieSession({
+    keys:['key1', 'key2']
+  }));
+
+  app.use(cookieParser());
+
+  app.use(function(req, res, next) {
+    if (!req.session.voted) {
+      req.session.voted = false;
+    }
+    next();
+  });
 
 
 	app.use(bodyParser.urlencoded({extended: true}));

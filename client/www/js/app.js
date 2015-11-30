@@ -1,6 +1,6 @@
 (function() {
 
-	angular.module('gloria', ['gloria.AuthControllers', 'gloria.SettingControllers', 'ngRoute', 'ui.router'])
+	angular.module('gloria', ['gloria.AuthControllers', 'gloria.SettingsControllers', 'ngRoute', 'ui.router'])
 
 	.config(function ($routeProvider, $httpProvider, $stateProvider, $urlRouterProvider){
 		$urlRouterProvider.otherwise('/');
@@ -19,9 +19,9 @@
     	})
 
     	.state('create', {
-    		templateUrl: 'views/create.html',
-    		url:'/create',
-    		controller: 'CreateController'
+    		templateUrl: 'views/settings.html',
+    		url:'/settings',
+    		controller: 'SettingsController'
     	})
 
       // .state('dash', {

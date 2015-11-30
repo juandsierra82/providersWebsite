@@ -1,6 +1,7 @@
-angular.module('gloria.SettingControllers', [])
+angular.module('gloria.SettingsControllers', ['gloria.Settings'])
 
-.controller('CreateController', function ($scope){
+.controller('SettingsController', function ($scope, Settings){
+	Settings.test();
 	console.log('in Create Controller')
   
 

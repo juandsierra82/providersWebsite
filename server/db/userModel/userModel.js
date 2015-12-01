@@ -23,6 +23,18 @@ var UserSchema = new mongoose.Schema({
 		unique: false
 	},
 
+  firstName: {
+    type: String,
+    required: false,
+    unique: false
+  },
+
+  lastName: {
+    type: String,
+    required: false,
+    unique: false
+  },
+
 	daycare: {
 		type: String,
 		required: false,

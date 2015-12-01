@@ -105,6 +105,65 @@ module.exports = {
         .fail(function (error) {
           next(error);
         });
+  },
+
+  //update user profile
+
+  update: function(req, res, next){
+    console.log('calling update on username: ', req.body.name)
+    //fields expected for user profile
+
+    var shared = req.body.shared;
+    var firstName = req.body.firstname;
+    var lastName = req.body.lastname;
+    var daycare = req.body.daycare;
+    var email = req.body.email;
+
+    var updateUser = Q.nbind(User.update, User);
+    var userId = req.session.userId;
+
+    //updating user
+    updateUser = ({_id:userId}, {$set: {
+      shared: shared,
+      firstName: firstName,
+      lastName: lastName,
+      daycare: daycare,
+      email: email
+      }
+    })
+      .then(function (user){
+        if(!user){
+          res.send(401)
+        } else {
+          res.send(user);
+        }
+      })
+      .fail(function (error){
+        console.log('unable to update. error: ', error)
+        next(error);
+      })
+
+  },
+
+  serve: function(req, res, next){
+    console.log('serving data for user : ', req.body.name)
+    var findPublic = Q.nbind(User.find, User)
+
+    findPublic({shared: false}, '_id username')
+      .then(function (publicUsers){
+        console.log('this should be an array of users', publicUsers)
+      
+        if (publicUsers){
+          res.json(publicUsers)
+        } else {
+          res.send(401);
+        }
+      })
+      .fail(function (error){
+        console.log('unable to serve. error: ', error)
+        next(error);
+      });
   }
+
 }
 

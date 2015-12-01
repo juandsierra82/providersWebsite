@@ -162,7 +162,7 @@ module.exports = {
       .fail(function (error){
         console.log('unable to serve. error: ', error)
         next(error);
-      });
+      })
   }
 
 }

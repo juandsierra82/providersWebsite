@@ -20,6 +20,7 @@ function Settings ($http, $location, $window){
 	}
 
 	return {
-		test: test
+		test: test,
+		changeSettings: changeSettings
 	}
 }

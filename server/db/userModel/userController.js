@@ -110,7 +110,7 @@ module.exports = {
   //update user profile
 
   update: function(req, res, next){
-    console.log('calling update on username: ', req.body.name)
+    console.log('calling update on userID for session: ', req.session.userId);
     //fields expected for user profile
 
     var shared = req.body.shared;
@@ -121,9 +121,9 @@ module.exports = {
 
     var updateUser = Q.nbind(User.update, User);
     var userId = req.session.userId;
-
+      console.log('this is the userID fed to the function', userId)
     //updating user
-    updateUser = ({_id:userId}, {$set: {
+    updateUser({_id:userId}, {$set: {
       shared: shared,
       firstName: firstName,
       lastName: lastName,

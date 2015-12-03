@@ -1,5 +1,5 @@
 <div>
-	<form name="providerInfo">
+	<form ng-hide="updated" name="providerInfo">
 		<input name="firstname" ng-model="user.firstname" placeholder="Nombre" required/>
 		<br>
 		<input name="lastname" ng-model="user.lastname" placeholder="Apellido" required/>
@@ -11,4 +11,18 @@
 		<input name="email" ng-model="user.email" type="email" placeholder="correo electronico" required/>
 		<button ng-disabled="createForm.$invalid" ng-click="update()">Submit</button>
 	</form>
+	<div ng-show="updated"> User has been updated!
+		<br>
+		First Name: {{user.firstname}}
+		<br>
+		Last Name: {{user.lastname}}
+		<br>
+		Day Care: {{user.daycare}}
+		<br>
+		Address: {{user.address}}
+		<br>
+		Email: {{user.email}}
+		<button ng-click="change()">Necesito Revisar mis datos</button>
+		<button ng-click="confirm()">Todo esta bien puedo continuar</button>
+	</div>
 </div>

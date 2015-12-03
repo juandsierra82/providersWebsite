@@ -117,6 +117,7 @@ module.exports = {
     var firstName = req.body.firstname;
     var lastName = req.body.lastname;
     var daycare = req.body.daycare;
+    var address = req.body.address;
     var email = req.body.email;
 
     var updateUser = Q.nbind(User.update, User);
@@ -127,11 +128,13 @@ module.exports = {
       shared: shared,
       firstName: firstName,
       lastName: lastName,
+      address: address,
       daycare: daycare,
       email: email
       }
     })
       .then(function (user){
+        console.log('this is the data object after update', user)
         if(!user){
           res.send(401)
         } else {

@@ -1,6 +1,6 @@
 angular.module('gloria.SettingsControllers', ['gloria.Settings'])
 
-.controller('SettingsController', function ($scope, Settings, $window){
+.controller('SettingsController', function ($scope, Settings, $window, $location){
 	Settings.test();
 	console.log('in Create Controller')
 	$scope.user = {};
@@ -13,6 +13,8 @@ angular.module('gloria.SettingsControllers', ['gloria.Settings'])
 				if(data.ok === 1 && data.nModified ===1){
 					$scope.updated = true;
 				} else {
+					//TODO add verification of a field that is the same
+					//change place holder to reflect data served. user will get served data
 					$scope.updated = false;
 					alert('User information remains the same, please update before continueing')
 				}
@@ -33,7 +35,8 @@ angular.module('gloria.SettingsControllers', ['gloria.Settings'])
 	$scope.confirm = function(){
 		if($scope.updated===true){
 		console.log('confirmed')
-		$location.path('/dash')
+		//TODO: build up dash before changing view
+		// $location.path('/dash')
 		} 
 	}
 })

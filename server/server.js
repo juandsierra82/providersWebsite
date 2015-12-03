@@ -9,6 +9,7 @@ var cookieParser = require('cookie-parser');
 
 	app.use(morgan('dev'));
 
+//serves the cookie session to the request
 	app.use(cookieSession({
     keys:['key1', 'key2']
   }));

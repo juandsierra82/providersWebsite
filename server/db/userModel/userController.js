@@ -32,11 +32,6 @@ module.exports = {
       });
   },
 
-  logout: function (req, res, next) {
-    delete req.session.userId;
-    res.send(200);
-  },
-
   signup: function (req, res, next) {
     var username  = req.body.name,
         password  = req.body.password,
@@ -82,6 +77,11 @@ module.exports = {
       });
   },
 
+  logout: function (req, res, next) {
+    delete req.session.userId;
+    res.send(200);
+  },
+
   checkAuth: function (req, res, next) {
     // checking to see if the user is authenticated
     // grab the token in the header is any
@@ -122,7 +122,7 @@ module.exports = {
 
     var updateUser = Q.nbind(User.update, User);
     var userId = req.session.userId;
-      console.log('this is the userID fed to the function', userId)
+      console.log('updating infor for: ', req.session.userId)
     //updating user
     updateUser({_id:userId}, {$set: {
       shared: shared,
@@ -134,9 +134,10 @@ module.exports = {
       }
     })
       .then(function (user){
-        console.log('this is the data object after update', user)
+        console.log('user doc after update: ', user)
         if(!user){
-          res.send(401)
+          console.log('error user does not exist--check authorization controller')
+          res.send(401);
         } else {
           res.send(user);
         }
@@ -147,9 +148,31 @@ module.exports = {
       })
 
   },
+  //separating serveUser from checkAuth in case we want to store more user data than we want to serve back to the user also allows us to query a different table for info on the daycare, using a ref.
 
-  serve: function(req, res, next){
-    console.log('serving data for user : ', req.body.name)
+  serveUser: function(req, res, next){
+    console.log('serving data for userID', req.session.userId);
+
+    var userId = req.session.userId;
+    var findOne = Q.nbind(User.find, User);
+    findOne({_id: userId})
+      .then(function (user){
+        console.log('user queried: ', user);
+        if (user){
+        res.json(user);
+        } else {
+          res.send(401)
+        }
+      })
+      .fail(function (error){
+        console.log('unable to serve user. Error: ', error)
+          next(error);
+      })
+
+  },
+
+  servePublic: function(req, res, next){
+    console.log('User ', req.session.userId, ' requests all public data');
     var findPublic = Q.nbind(User.find, User)
 
     findPublic({shared: false}, '_id username')

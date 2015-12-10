@@ -12,7 +12,7 @@ angular.module('gloria.AuthServices', [])
               data: user
                })
                .then(function (res){
-                 console.log('this is the data received by the server', res.data)
+                 console.log('this is the data sent by the server', res.data)
                 return res.data;
                });
 
@@ -28,7 +28,7 @@ angular.module('gloria.AuthServices', [])
         })
         .then(function (res){
           console.log('this is the data sent to the server', res.data)
-          return res.data
+          return res.data;
         })
     },
 

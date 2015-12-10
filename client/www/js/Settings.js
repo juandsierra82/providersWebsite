@@ -3,6 +3,12 @@ angular.module('gloria.Settings', [])
 .factory('Settings', Settings)
 
 function Settings ($http, $location, $window){
+
+	return {
+		test: test,
+		changeSettings: changeSettings
+	}
+
 	function test(){
 		console.log('in settings factory')
 	};
@@ -19,8 +25,5 @@ function Settings ($http, $location, $window){
 			})
 	}
 
-	return {
-		test: test,
-		changeSettings: changeSettings
-	}
+
 }

@@ -10,7 +10,7 @@ angular.module('gloria.AuthControllers', ['gloria.AuthServices'])
       .then(function (data) {
         $window.localStorage.setItem('com.settings', data);
         $window.localStorage.setItem('userid', data.userid);
-        // $location.path('/dash');
+        $location.path('/dash');
       })
       .catch(function (error) {
         $scope.user.error = "Username and/or password is incorrect.";
@@ -26,7 +26,7 @@ angular.module('gloria.AuthControllers', ['gloria.AuthServices'])
 			.then(function (data){
 				$window.localStorage.setItem('com.provider', data.token);
         $window.localStorage.setItem('userid', data.userid);
-				$location.path('/create');
+				$location.path('/settings');
 			})
 			.catch(function (error){
 				console.log('this is the error', error)

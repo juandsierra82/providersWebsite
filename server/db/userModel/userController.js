@@ -161,7 +161,7 @@ module.exports = {
         if (user){
         res.json(user);
         } else {
-          res.send(401)
+          res.send(401);
         }
       })
       .fail(function (error){

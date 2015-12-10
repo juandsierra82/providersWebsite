@@ -16,10 +16,9 @@ angular.module('gloria.SettingsControllers', ['gloria.Settings'])
 					//TODO add verification of a field that is the same
 					//change place holder to reflect data served. user will get served data
 					$scope.updated = false;
-					alert('User information remains the same, please update before continueing')
+					alert('User information remains the same, please update before continuing')
 				}
-				// $window.localStorage.setItem('com.settings', data);
-        // $location.path('/dash');
+
       })
       .catch(function (error) {
       	console.log('this is the error ', error)
@@ -35,8 +34,7 @@ angular.module('gloria.SettingsControllers', ['gloria.Settings'])
 	$scope.confirm = function(){
 		if($scope.updated===true){
 		console.log('confirmed')
-		//TODO: build up dash before changing view
-		// $location.path('/dash')
+		$location.path('/dash')
 		} 
 	}
 })

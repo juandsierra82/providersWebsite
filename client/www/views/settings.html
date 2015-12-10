@@ -11,7 +11,7 @@
 		<input name="email" ng-model="user.email" type="email" placeholder="correo electronico" required/>
 		<button ng-disabled="createForm.$invalid" ng-click="update()">Submit</button>
 	</form>
-	<div ng-show="updated"> User has been updated!
+	<div ng-show="updated"> {{user.firstname}}, your profile has been updated!
 		<br>
 		First Name: {{user.firstname}}
 		<br>

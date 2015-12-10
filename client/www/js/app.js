@@ -1,6 +1,6 @@
 (function() {
 
-	angular.module('gloria', ['gloria.AuthControllers', 'gloria.SettingsControllers', 'ngRoute', 'ui.router'])
+	angular.module('gloria', ['gloria.AuthControllers', 'gloria.SettingsControllers', 'gloria.DashControllers', 'ngRoute', 'ui.router'])
 
 	.config(function ($routeProvider, $httpProvider, $stateProvider, $urlRouterProvider){
 		$urlRouterProvider.otherwise('/');
@@ -24,11 +24,11 @@
     		controller: 'SettingsController'
     	})
 
-      // .state('dash', {
-      //   templateUrl: 'views/dash.html',
-      //   url: '/dash',
-      //   controller: 'DashController'
-      // })
+      .state('dash', {
+        templateUrl: 'views/dash.html',
+        url: '/dash',
+        controller: 'DashController'
+      })
 
 	});
 })()
